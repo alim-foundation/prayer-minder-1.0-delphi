@@ -1,0 +1,66 @@
+
+
+This directory contains release 2.1 PRAYTIME.  PRAYTIME is a modified version
+of Kamal Abdali's program "prayertime."  
+
+This distribution includes the following files:
+	README  - this file.
+	praytime.1 - reference manual page (nroff/troff -man).
+	praytime.hlp - output of "nroff -man praytime.1 |col -b".
+	Makefile - also contains geographical coordinates of many cities.
+	praytime.c - C source  file for praytime.
+	praytime.exe - DOS excutable  (see praytime.hlp for information
+		       about how to set the parameters for your location)
+
+COMPILING PRAYTIME:
+
+The computation of the times of prayers for a given location involves the 
+determination of times of specific Sun positions (e.g., sunrise, sunset,
+midday, twilight) at that location.  Thus, in order to install PRAYTIME,
+you need to edit the Makefile to specify the geographical data for your 
+location, then type "make".  (If you wish to force a recompilation, type
+"make clean" and then type "make".)
+
+The Makefile already contains information (longitude and latitude) about most 
+major cities in the US and a number of cities elsewhere.  If you are in the
+US, and information about your town/city is not already included in the 
+Makefile, you may use the Geographic Name Server (courtesy of the U. of
+Michigan) to find out the exact latitude and longitude of your city/town.
+Simply telnet to port 3000 at martini.eecs.umich.edu and type your ZIP code.
+Here is an example:
+
+ %telnet martini.eecs.umich.edu 3000
+ Trying 141.212.99.9...
+ Connected to martini.eecs.umich.edu.
+ Escape character is '^]'.
+ # Geographic Name Server, Copyright 1992 Regents of the University of Michigan.
+ # Version 8/19/92.  Use "help" or "?" for assistance, "info" for hints.
+ .
+
+ 43210
+
+ 0 Columbus
+ 1 39049 Franklin
+ 2 OH Ohio
+ 3 US United States
+ R county seat, state capital
+ F 45 Populated place
+ L 39 57 40 N  82 59 56 W
+ P 564871
+ E 744
+ Z 43085 43200 43201 43202 43203 43204 43205 43206 43207 43209
+ Z 43211 43212 43213 43214 43215 43216 43217 43218 43219 43220
+ Z 43222 43223 43224 43226 43227 43228 43229 43230 43231 43232
+ Z 43236 43251 43253 43260 43265 43266 43267 43268 43269 43270
+ Z 43285 43286 43287 43291
+ .
+ ^]
+ telnet> q
+ 
+If your town/city is outside the US, you may be able to find its
+longitude and latitude by calling your local airport or library.
+
+Wa Al-salaam,
+
+Waleed A. Muhanna
+(wmuhanna@magnus.acs.ohio-state.edu)

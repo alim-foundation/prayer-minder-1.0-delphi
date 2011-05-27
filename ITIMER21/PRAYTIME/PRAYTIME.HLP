@@ -1,0 +1,264 @@
+
+
+
+     PRAYTIME(1L)	   (Praytime Version 2.1)	  PRAYTIME(1L)
+
+
+
+     NAME
+	  praytime - produce Islamic prayer time schedule
+
+     SYNOPSIS
+	  praytime [-h]	[-i] [-f fiqh] [-r ratio] [-a angle] [-t time]
+	  [-m time] [ [month] year ]
+
+     DESCRIPTION
+	  praytime generates Islamic prayer time schedules and
+	  computes the direction of the	Qiblah for any location.  If
+	  no argument is given,	the prayer time	schedule for the
+	  current date at the default location is produced.  (The
+	  default location is the location specified by	appropriately
+	  setting the PTLOC environment	variable (see below).  If
+	  PTLOC	is not set, the	location configured into the program
+	  when it was compiled is used.)  If a year is specified, the
+	  program outputs a schedule for the entire year.  If a	month
+	  is also specified, a schedule	just for that month is
+	  printed.   If	the -h option is specified, praytime takes the
+	  given	month/year as a	Hijri month/year (see Hdate/Hcal (1L))
+	  and produces a schedule accordingly.
+
+	  The year can be between 1900 and 2200, or 0 for a
+	  "perpetual" schedule.	 (Hijri	year can be between 1318 and
+	  1625.)  The month is a number	between	1 and 12.  Times in a
+	  "perpetual" schedules	are essentially	the average for	the
+	  four years of	a leap cycle.  (The yearly variation in	prayer
+	  times	is seldom more than two	minutes, and the times return
+	  back to almost the same value	every four years.)
+
+
+	  praytime allows for Fiqhi variations in computing methods.
+	  The following	command	line options affect the	method of
+	  computation.
+
+	  -f fiqh  Fiqh	should be S(Hafi'i) or H(anafi).  Sets the
+		   shadow ratio	for determining	'Asr to	1 or 2,
+		   respectively.  Default value	is SHafi'i.
+
+	  -r ratio Specifies the value of the 'Asr shadow ratio
+		   explicitly.	Default	value is 1.
+
+	  -a angle Specifies Sun's angle of depression at Fajr in
+		   degrees.  Common values are 18 (for Fajr to be the
+		   same	as the astronomical twilight) or 15 (a bit
+		   later).  Default value is 18, which many hold to be
+		   the correct value and which is also the value
+		   adopted by most Islamic countries today.  In	North
+		   America, the	practice has been to use a depression
+		   angle of 15.	 However, in general, extreme care
+		   should be employed in this regard and very reliable
+		   observational data should be	required to accept any
+
+
+
+     Page 1					     (printed 8/21/94)
+
+
+
+
+
+
+     PRAYTIME(1L)	   (Praytime Version 2.1)	  PRAYTIME(1L)
+
+
+
+		   value which is less than 18 degrees.	 The morning
+		   twilight marks the beginning	of the fasting period
+		   in RamaDHaan, and as	such, using smaller values for
+		   the depression angle	may even nullify the Fast.
+
+	  -m time  Specifies a maximum time interval from Fajr to
+		   sunrise in minutes.	A common value used is 90
+		   minutes.  This method is sometimes used in high-
+		   latitude locations where times for the usual	values
+		   of Sun's depression are undefined or	are
+		   impractical for certain days	during the year.
+
+	  -t time  Specifies a fixed time interval from	Fajr to
+		   sunrise in minutes. This value is used to compute
+		   daily time for Fajr prayers.	 A common value	used
+		   is 90 minutes.  This	method is sometimes useful in
+		   extremely high-latitude locations where times for
+		   the usual values of Sun's depression	are either
+		   undefined or	are impractical.
+
+	  Note:	'Isha is computed symmetrically	with respect to	Fajr,
+	  with whichever method	is chosen and whatever parameter value
+	  is specified.	It is an error to specify at the same time
+	  both -a and -t or both -t and	-m or both -f and -r.
+
+
+	  To generate schedules	for locations other than the location
+	  configured into the program, set the PTLOC environment
+	  variable appropriately (in your .login file under UNIX or
+	  autoexec.bat under DOS) or use the following command line
+	  option.
+
+	  -i	   reads name and geographical data for	the location
+		   from	the standard input, instead of using the
+		   default location.  If standard input	is a
+		   (terminal) keyboard,	praytime prompts the user for
+		   the values.
+
+     LOCATION DATA
+	  Data supplied	through	the environment	variable PTLOC or via
+	  standard input must contain (in given	order):
+
+	       Name of location	(up to 40 characters)
+
+	       Latitude	degrees	and minutes, and N or S	to specify
+	       north or	south.
+
+	       Longitude degrees and minutes, and E or W to specify
+	       east or west.
+
+	       Time Zone in hours (Decimal for fractional hour zones,
+	       negative	if West	of Greenwich).
+
+
+
+     Page 2					     (printed 8/21/94)
+
+
+
+
+
+
+     PRAYTIME(1L)	   (Praytime Version 2.1)	  PRAYTIME(1L)
+
+
+
+	       Y or 1 if Daylight Saving Time adjustment needed.  N or
+	       0, otherwise.
+
+	  Data items should be separated by whitespace.	 Input may
+	  contain data for more	than one location; the tables will be
+	  concatenated on the output.
+
+     EXAMPLES
+	  The following	example	produces a prayer time schedule	for
+	  August 1994.
+
+	       praytime	8 1994
+
+	  The following	command	produces a schedule for	RamaDhaan
+	  1414.
+
+	       praytime	-h 9 1414
+
+	  The following	command	produces a schedule for	the year 1994,
+	  using	the value 15 for the sun's the angle of	depression.
+
+	       praytime	-a 15 1994
+
+	  The following	command	sequence produces a schedule for the
+	  year 1994 for	Washington, DC.
+
+	       If need be, set the PTLOC environment variable
+	       UNIX:
+		 setenv	PTLOC "Washington, DC  38 54 N	77 2 W	-5 Y"
+	       DOS:
+		 SET PTLOC=Washington, DC  38 54 N  77 2 W  -5 Y
+
+	       UNIX/DOS:
+		 praytime 1994
+
+
+	  The following	command	sequence on produces a perpetual
+	  prayer schedule for Washington, DC, using the	sun's
+	  depression angle of 15 degrees to define Fajr	and a shadow
+	  ratio	of 2 to	define 'Asr.  The schedule includes adjustment
+	  for Daylight Saving Time.
+
+	       UNIX:
+		 cat > dc.dta
+		 Washington, DC	 38 54 N  77 2 W  -5 Y
+		 ^D
+
+	       DOS:
+		 more >	dc.dta
+		 Washington, DC	 38 54 N  77 2 W  -5 Y
+		 ^Z
+
+
+
+
+     Page 3					     (printed 8/21/94)
+
+
+
+
+
+
+     PRAYTIME(1L)	   (Praytime Version 2.1)	  PRAYTIME(1L)
+
+
+
+	       UNIX/DOS:
+		 praytime -i -a15 -r 2 0 < dc.dta
+
+
+     SEE ALSO
+	  hdate/hcal (1L), premind(1L)
+
+     AUTHORS
+	  Original program, called `praytimer',	produced time
+	  schedules in TeX and was derived by Kamal Abdali from	his
+	  Minaret program for the Macintosh.  Waleed Muhanna
+	  (wmuhanna@magnus.acs.ohio-state.edu) modified	the program to
+	  remove all TeX related code; to improve input	checking, to
+	  allow	a default location to be easily	configured in; to
+	  permit the user to print a schedule for the current date or
+	  a specified month and	year; and to integrate it with
+	  hdate/hcal.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+     Page 4					     (printed 8/21/94)
+
+
+

@@ -1,0 +1,24 @@
+
+
+This directory contains release 2.1 of PREMIND.  PREMIND provides a prayers
+time reminder service.   It is designed to work in conjunction with
+PRAYTIME, and would run ONLY on UNIX platforms.   
+
+This distribution includes the following files:
+
+	README  - this file.
+	premind.1 - reference manual page (nroff/troff -man).
+	premind.hlp - output of "nroff -man premind.1 |col -b".
+	Makefile - also contains geographical coordinates of many cities.
+	premind.c - C source  file for premind.
+	killpr - a shell script to cancel premind service
+
+Installing Premind:
+
+Premind determines prayers times by invoking and reading the
+output of "praytime".  You must therefore have the executable for 
+"praytime" present in the current working directory or installed in 
+some other directory which is in the shell search PATH.  
+Read the manual page for further instructions.
+
+Waleed Muhanna

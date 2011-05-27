@@ -1,0 +1,162 @@
+.htmlData TodayPageFmt
+<body bgcolor=white>
+  <br>
+  <font face="Arial" size=2>
+    <table align=center border=0 cellspacing=0 bgcolor=#FFFFE1>
+      <tr>
+        <th bgcolor=navy>
+          <font color=white>Prayer</font>
+        </th>
+        <th bgcolor=navy>
+          <font color=white>Start</font>
+        </th>
+        <th bgcolor=navy>
+          <font color=white>Duration</font>
+        </th>
+      </tr>
+      <tr>
+        <td>${scFajrName}</td>
+        <td align=center>${scFajrTime}</td>
+        <td align=center>${scFajrDuration}</td>
+      </tr>
+      <tr>
+        <td>${scSunriseName}</td>
+        <td align=center>${scSunriseTime}</td>
+        <td align=center>${scSunriseDuration}</td>
+      </tr>
+      <tr>
+        <td>${scZuhrName}</td>
+        <td align=center>${scZuhrTime}</td>
+        <td align=center>${scZuhrDuration}</td>
+      </tr>
+      <tr>
+        <td>${scAsrName}</td>
+        <td align=center>${scAsrTime}</td>
+        <td align=center>${scAsrDuration}</td>
+      </tr>
+      <tr>
+        <td>${scMaghribName}</td>
+        <td align=center>${scMaghribTime}</td>
+        <td align=center>${scMaghribDuration}</td>
+      </tr>
+      <tr>
+        <td>${scIshaaName}</td>
+        <td align=center>${scIshaaTime}</td>
+        <td align=center>${scIshaaDuration}</td>
+      </tr>
+    </table>
+  </font>
+</body>
+
+.htmlData TablePageFmt
+<body bgcolor=white>
+  <br>
+  <font size=6>
+    <center><b>${pmMonthYear} Prayer Schedule</b></center>
+  </font>
+  <font size=2>
+    <center><b>for ${scCityName} (Latitude ${scLatitude}, Longitude ${scLongitude})</b></center>
+  </font>
+  <br>
+
+  <font face="Arial" size=2>
+    <table width=95% border=1 colspacing=0 cellspacing=0 align=center>
+      <tr>
+        <th bgcolor=black colspan=2><font color=white>Day</font>
+        <th width=12% bgcolor=black><font color=white>${scFajrName}</font>
+        <th width=12% bgcolor=black><font color=white>${scSunriseName}</font>
+        <th width=12% bgcolor=black><font color=white>${scZuhrName}</font>
+        <th width=12% bgcolor=black><font color=white>${scAsrName}</font>
+        <th width=12% bgcolor=black><font color=white>${scMaghribName}</font>
+        <th width=12% bgcolor=black><font color=white>${scIshaaName}</font>
+
+      ${pmTablePrayerRows}
+
+      <caption align=bottom>
+        <font size=1>
+          Calculated by ${pmAppName} Release ${pmAppVersion} on ${pmCalcOnDateLongFmt}
+        </font>
+      </caption>
+    </table>
+  </font>
+</body>
+
+.htmlData TableRowFmt
+    <tr align=center>
+      <td><font color=black><b>${scCalcDateDayNum}</b></font></td>
+      <td><font color=green>${scCalcDateWeekday}</font></td>
+      <td><font color=maroon>${scFajrTime}</font></td>
+      <td><font color=navy>${scSunriseTime}</font></td>
+      <td><font color=maroon>${scZuhrTime}</font></td>
+      <td><font color=navy>${scAsrTime}</font></td>
+      <td><font color=maroon>${scMaghribTime}</font></td>
+      <td><font color=navy>${scIshaaTime}</font></td>
+    </tr>
+
+.htmlData CalendarPageFmt
+<body bgcolor=white>
+  <br>
+  <font size=6>
+    <center><b>${pmMonthYear} Prayer Calendar</b></center>
+  </font>
+  <font size=2>
+    <center><b>for ${scCityName} (Latitude ${scLatitude}, Longitude ${scLongitude})</b></center>
+  </font>
+  <br>
+
+  <font face="Arial" size=1>
+    <table border=1 cellspacing=0 cellpadding=2 width=95% align=center>
+      <tr align=center>
+        <td bgcolor=navy width=14%><b><font color=white>Sunday</font></b>
+        <td bgcolor=navy width=14%><b><font color=white>Monday</font></b>
+        <td bgcolor=navy width=14%><b><font color=white>Tuesday</font></b>
+        <td bgcolor=navy width=14%><b><font color=white>Wednesday</font></b>
+        <td bgcolor=navy width=14%><b><font color=white>Thursday</font></b>
+        <td bgcolor=navy width=14%><b><font color=white>Friday</font></b>
+        <td bgcolor=navy width=14%><b><font color=white>Saturday</font></b>
+      </tr>
+
+      ${pmCalendarPrayerCells}
+
+      <caption align=bottom>
+        <font size=1>
+          Calculated by ${pmAppName} Release ${pmAppVersion} on ${pmCalcOnDateLongFmt}
+        </font>
+      </caption>
+    </table>
+  </font>
+</body>
+
+.htmlData CalendarCellNoDataFmt
+<td bgcolor=#FFFFE1>&nbsp;</td>
+
+.htmlData CalendarCellDataFmt
+        <td>
+          <font face="Times New Roman" color=maroon size=4>
+            <b>${scCalcDateDayNum}</b>
+          </font>
+          <table cellpadding=1 cellspacing=0 width=100%>
+            <tr>
+              <td align=center><b>F</b></td>
+              <td><font color=navy>${scFajrTime}</font></td>
+
+              <td align=right>${scAsrTime}</td>
+              <td align=center><b>A</b></td>
+            </tr>
+            <tr>
+              <td align=center><b>S</b></td>
+              <td>${scSunriseTime}</td>
+
+              <td align=right><font color=navy>${scMaghribTime}</font></td>
+              <td align=center><b>M</b></td>
+            </tr>
+            <tr>
+              <td align=center><b>D</b></td>
+              <td><font color=navy>${scZuhrTime}</font></td>
+
+              <td align=right>${scIshaaTime}</td>
+              <td align=center><b>I</b></td>
+            </tr>
+          </table>
+        </td>
+

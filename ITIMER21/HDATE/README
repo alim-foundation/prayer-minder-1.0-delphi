@@ -1,0 +1,26 @@
+
+
+
+This directory contains release 2.1 of HDATE/HCAL.  This is basically
+a maintenance relase.  In this directory you will find the following files:
+
+	README  - this file.
+	intro.doc - background information on the Islamic Calendar.
+	hdate.1 - reference manual page for hdate and hcal (nroff/troff -man).
+	hd-hc.hlp - output of "nroff -man hdate.1 |col -b".
+	Makefile - the name says it all.
+	hdate.c - C source file for hdate.
+	hcal.c - C source file for hcal.
+	hconv.c - main conversion routines and supporting utilities.
+	hconv.h - "include" file containing definitions and "extern"
+		  declarations.
+	hdate.exe and hcal.exe  DOS executables
+
+Please send your comments, suggestions, fixes, and additions
+to: wmuhanna@magnus.acs.ohio-state.edu
+
+Enjoy!
+
+Waleed Muhanna
+Friday 4 Raby` al-awal 1415 A.H.
+August 12, 1994

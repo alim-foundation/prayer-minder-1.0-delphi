@@ -1,0 +1,13 @@
+#!/bin/sh
+# killpr - kill premind processes attached to current terminal/window
+# Waleed Muhanna (wmuhanna@magnus.acs.ohio-state.edu) 12/92, 8/94
+
+set x `ps | awk '/:[0-9][0-9] ([^ ]*\/p|p)remind( |$)/ {print $1}'`; shift
+case $# in
+	0)	echo "No Premind processes found.";;
+	1)	kill -9 $* ; 
+		echo "Found and terminated 1 Premind process.";;
+	*)	kill -9 $* ; 
+		echo "Found and terminated $# Premind processes.";;
+esac
+exit 0

@@ -1,0 +1,62 @@
+
+
+              ___   | |       |  ___   | |  /|  |  | |              |
+             |  |  _| |       | |  |  _| | /_|  |  | |    |  |  |   |
+      o_|__|____| |   | | o | o____| |   |   |__|__| |  o_|__|__|___|
+  ___/   oo    ___|     |___|     ___|              ___/          o
+
+
+
+IslamicTimer is a software package consisting of programs for generating 
+Islamic Calendars, translating Gregorian/Julian dates to/from dates in 
+the Islamic Calendar, computing prayer time schedules, and for determining
+the direction of the Qiblah.  It also includes a prayers time reminder/
+notification service.
+
+This is release 2.1 of IslamicTimer.  It includes the following:
+
+	README   - this file.
+
+	hdate    - a directory containing the source, documentation,
+		   background information, and makefile for HDATE and 
+		   HCAL.  HDATE prints the current Islamic (Hijri) date
+		   and translates dates between the Hijri calendar and the 
+		   Gregorian/Julian Calendar.   HCAL prints calendars 
+		   (for a Hijri/Gregorian month or an entire year) with 
+		   both common and Hijri dates.
+
+	praytime - a directory containing the source, documentation, and
+		   makefile for PRAYTIME, a program that generates
+		   Islamic prayer time schedules and computes the 
+		   direction of the Qiblah for any location.  
+		   The schedules can be generated for both Hijri or
+		   Gregorian months or years.
+
+	premind  - a directory containing the source, documentation, and
+		   makefile for PREMIND, a program that works in conjunction 
+		   with PRAYTIME and provides prayers time notification/
+		   reminder service.  (premind works on UNIX platforms only.)
+
+The software should be fairly portable and it should run on both UNIX
+and DOS platforms (DOS executables are included in this release).  If you
+have to make any changes to files other than the Makefiles to make these 
+programs work on your machine/compiler, please contact me and tell me 
+where I goofed.
+
+All the programs are Copyrighted.  Permission for nonprofit use and 
+redistribution of the software and its documentation is granted without 
+fee.
+
+Complements, comments, suggestions, fixes, and additions can be sent to:
+
+	Waleed A. Muhanna
+	P.O. Box 151048
+	Columbus, OH 43215
+	wmuhanna@magnus.acs.ohio-state.edu
+
+Enjoy!
+
+Waleed Muhanna
+
+Friday 4 Raby` al-awal 1415 A.H.
+August 8, 1994

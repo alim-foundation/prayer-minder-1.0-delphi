@@ -1,0 +1,42 @@
+     Fajr    : (Default) is the end of astronomical twilight;
+               it is the time preceding sunrise during which the sky is 
+               partially illuminated. The fajr begin when the sun is still 
+               18 deg bellow horizon or with the other words when the zenith
+               distance (angular distance on the celestial sphere measured
+               along the great circle from the point directly overhead to
+               the Sun) is 108 deg.
+               The moment is the end of the total darkness in the east sky.
+               If the switch Nautic is on, 12 deg bellow horizon will be used.
+               Nautical twilight is the moment that usually used by sailors.
+               It is the moment as the boundary of sky and see begins to be
+               visible.  The sky begins at the moment to be red.
+
+     Sunrise : is the times at which the apparent upper edge of the Sun is 
+               on the astronomical horizon; i.e., when the true zenith 
+               distance, referred to the center of the Earth, of the central
+               point of disk is 90 deg 50', based on adopted values of 34' for
+               horizontal refraction and 16' for the Sun's semidiameter.
+
+     Duhr    : is in astronomy known as 'upper transit',
+               it is time as the sun exact in meridian of observer.
+               It does not mean that the sun is above our head.
+               The transit upper is also exact = (Sunrise+Sunset)/2.
+               This redefinition is necessary for some regions where some
+               times don't have sunrise or sunset (like polar regions).
+               It has still upper transit, but if sunrise and sunset not
+               exist, we must ask about the sense of duhr ...
+               The whole day may be always duhr...
+
+     Ashr    : it is difficult to get astronomical definition of ashr.
+               Some madzhab uses the definition that the length of shading
+               same the object (zenith distance = 45 deg).
+               But many regions outside the tropical area have than absurd
+               ashr-time (differs many like today) or undefinable.
+               Also we define Ashr = (Duhr+Sunset)/2.
+               Ashr is also only undefinable if sunset not exist!
+
+     Maghrib : is sunset (also opposite of sunrise).
+
+     Isya    : opposite of fajr.
+               There are also two possibilities: Astronomical (Default) or
+               Nautical twilight (if switch Nautic ON).

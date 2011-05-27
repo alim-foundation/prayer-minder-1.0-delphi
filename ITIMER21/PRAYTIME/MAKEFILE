@@ -1,0 +1,105 @@
+#
+# Makefile for praytime
+#
+# Waleed A. Muhanna
+# Ohio State University
+# wmuhanna@magnus.acs.ohio-state.edu
+# August, 1994
+#
+
+
+# Comment out the line for Columbus
+# Uncomment or add a line with the appropriate data for your city.
+# (check the data for accuracy, particularly for cities outside the US.)
+#-----------------------------------------------------------------------------
+#                                                     Time  Adjust for DayLight
+#       CITY                  Latitude    Longitude   Zone  Saving Time?
+#-----------------------------------------------------------------------------
+#PTLOC= Anchorage, AK         61 13 N     149 53 W    -10    Y
+#PTLOC= Ann Arbor, MI         42 17 N     83 45 W      -5    Y
+#PTLOC= Atlanta, GA           33 45 N     84 23 W      -5    Y
+#PTLOC= Boston, MA            42 21 N     71 03 W      -5    Y
+#PTLOC= Chicago, IL           41 51 N     87 39 W      -6    Y
+#PTLOC= Cincinnati, OH        39 10 N     84 27 W      -5    Y
+#PTLOC= Cleveland, OH         41 30 N     81 42 W      -5    Y
+
+PTLOC= Columbus, OH          39 58 N     83 00 W      -5    Y
+
+#PTLOC= Dallas, TX            32 47 N     96 48 W      -6    Y
+#PTLOC= Denver, CO            39 44 N     104 59 W     -7    Y
+#PTLOC= Detroit, MI           42 20 N     83  03 W     -5    Y
+#PTLOC= Honolulu, HI          21 18 N     157 52 W    -10    Y
+#PTLOC= Houston, TX           29 46 N     95  22 W     -6    Y
+#PTLOC= Indianapolis, IN      39 46 N     86 09 W      -5    Y
+#PTLOC= Kansas City, MO       39 06 N     94 35 W      -6    Y
+#PTLOC= Los Angeles, CA       34 03 N     118 15 W     -8    Y
+#PTLOC= Madison, WI           43 04 N     89 24 W      -6    Y
+#PTLOC= Miami, FL             25 46 N     80 12 W      -5    Y
+#PTLOC= Milwaukee, WI         43 02 N     87 54 W      -5    Y
+#PTLOC= Minneapolis, MN       44 59 N     93 16 W      -6    Y
+#PTLOC= New Orleans, LA       29 57 N     90 05 W      -6    Y
+#PTLOC= New York, NY          40 43 N     74 00 W      -5    Y
+#PTLOC= Oklahoma City, OK     35 28 N     97 31 W      -6    Y
+#PTLOC= Orlando, FL           28 32 N     81 23 W      -5    Y
+#PTLOC= Philadelphia, PA      39 57 N     75 10 W      -5    Y
+#PTLOC= Pittsburgh, PA        40 26 N     80 00 W      -5    Y
+#PTLOC= Portland, OR          45 31 N     122 41 W     -8    Y
+#PTLOC= Raleigh, NC           35 46 N     78 38 W      -5    Y 
+#PTLOC= San Diego, CA         32 43 N     117 09 W     -8    Y
+#PTLOC= San Francisco, CA     37 47 N     122 25 W     -8    Y
+#PTLOC= Seattle, WA           47 36 N     122 20 W     -8    Y
+#PTLOC= Tampa, FL             27 57 N     82 28 W      -5    Y
+#PTLOC= Toronto, Ontario      43 39 N     79 23 W      -5    Y
+#PTLOC= Tucson, AZ            32 13 N     110 56 W     -7    Y
+#PTLOC= Vancouver, BC         49 19 N     123 05 W     -8    Y
+#PTLOC= Washington, DC        38 54 N     77  02 W     -5    Y
+
+#PTLOC= Makkah, S. Arabia   21 25 N     39 49 E      +3    N
+#PTLOC= Maddinah, S. Arabia 24 30 N     39 35 E      +3    N
+#PTLOC= Al-Quds, Palestine  31 47 N     35 13 E      +2    Y    
+
+#PTLOC= Alexandria, Egypt   31 13 N     29 55 E      +2    Y 
+#PTLOC= Algiers, Algeria    36 48 N     03 00 E      +1    N
+#PTLOC= Baghdad, `Iraq      33 20 N     44 26 E      +3    N
+#PTLOC= Beirut, Lebanon     33 52 N     35 30 E      +3    N 
+#PTLOC= Cairo, Egypt        30 03 N     31 15 E      +2    Y 
+#PTLOC= Damascus, Syria     33 30 N     36 19 E      +2    N
+#PTLOC= Khartoum, Sudan     15 30 N     32 36 E      +2    N 
+#PTLOC= Rabat, Morocco      34 02 N     06 51 W      +0    N
+#PTLOC= Riyadh, S. Arabia   24 39 N     46 46 E      +3    N
+
+#PTLOC= Agra, India         27 12 N    77 54 E       +5    N
+#PTLOC= Dacca, Bangladesh   23 48 N    90 27 E       +6    N
+#PTLOC= Istanbul, Turkey    41 02 N    28 57 E       +2    N 
+#PTLOC= Jakarta, Indonesia  06 08 S    106 45 E      +7    N
+#PTLOC= Peshawar, Pakistan  34 01 N    71 40 E       +5    N
+#PTLOC= Tehran, Iran        35 40 N    51 26 E       +3    N
+
+#PTLOC= Dar el-Salaam, Tanz. 06 48 S    39 12 E     +3    N
+#PTLOC= Dakar, Senegal       14 42 N    17 30 W     +0    N
+#PTLOC= Lagos, Nigeria       06 30 N    03 24 E     +1    N
+#PTLOC= Capetown, S. Africa 33 48 S     18 36 E     +2    N
+#PTLOC= Moscow, Russia      55 45 N     37 42 E     +2    N
+
+#PTLOC= Tokyo, Japan        35 40 N    139 45 E    +9    N
+#PTLOC= Sydney, Australia   33 53 S    151 10 E    +10   N
+
+#PTLOC= Paris, France       48 52 N    02 20 E     +1    N
+#PTLOC= London, England     51 30 N    00 10 W     +0    N
+
+#PTLOC= Buenos Aires, Argant. 34 42 S  58 24 W      -3   N
+#PTLOC= Lima, Peru            12 24 S  77 00 W      -5   N
+#PTLOC= Rio DeJeneiro, Brazil 22 54 S  43 12 W      -3   N
+
+#CC= gcc
+CFLAGS= -I..\hdate  -DPTLOC=\""$(PTLOC)"\" -W4
+
+praytime.exe: praytime.c hconv.obj
+	$(CC) $(CFLAGS) -o praytime praytime.c hconv.obj
+
+hconv.obj: ..\hdate\hconv.c ..\hdate\hconv.h
+	$(CC) $(CFLAGS) -c ..\hdate\hconv.c
+
+clean:
+	-del praytime.obj 
+	-del praytime.exe

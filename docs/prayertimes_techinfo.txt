@@ -1,0 +1,365 @@
+-----------------------------------------------------------------------------
+4. TECHNICAL INFORMATION 
+----------------------------------------------------------------------------- 
+ 
+4.1 Definitions of Prayer Times 
+=============================== 
+ 
+The five Islamic prayers are termed Fajr, Zuhr, Asr, Maghrib and Isha.  
+Twilight is the period before sunrise and after sunset when the sky is  
+partially illuminated by scattered sunlight. The start of fajr and isha  
+depend on twilight. In astronomy, the twilight period is divided into civil,
+nautical and astronomical twilight which come to an end when the solar 
+depression  is 6, 12, and 18 degrees respectively.  
+ 
+For the purpose of calculating fajr and isha times a solar depression of  
+18 degrees is generally used i.e. astronomical twilight. 
+ 
+At extreme latitudes solar depression may not exceed 18 degrees for certain 
+months of the year and hence twilight persists between sunset and next sunrise  
+(see below). 
+ 
+ 
+* FAJR starts with the dawn or morning twilight. Fajr ends just before  
+sunrise. 
+ 
+* ZUHR begins after mid-day when the sun has passed the meridian (i.e. after  
+zawal). For convenience, many published prayer timetables add five  
+minutes to zawal to obtain the start of Zuhr. Zuhr ends at the start of  
+Asr time. 
+ 
+* The timing of ASR depends on the length of the shadow cast by an object.  
+According to the Shafi school of jurisprudence, Asr begins when the  
+length of the shadow of an object exceeds the length of the object. According  
+to the Hanafi school of jurisprudence, Asr begins when the length of the  
+shadow exceeds TWICE the length of the object. In both cases, the minimum  
+length of shadow (which occurs when the sun passes the meridian) is  
+subtracted from the length of the shadow before comparing it with the  
+length of the object. 
+ 
+* MAGHRIB begins at sunset and ends at the start of isha.  
+  
+* ISHA starts after dusk when the evening twilight disappears. 
+ 
+ 
+ 
+4.2 Persisting Twilight 
+======================= 
+ 
+At extreme latitudes the twilight may persist between sunset and the next  
+sunrise. Hence there is no true night. Under these circumstances, Fajr and  
+Isha times may be calculated using one of four agreed principles: 
+ 
+ 
+1.  Nearest latitude (Aqrab Al-Balad) - add the interval between sunset and  
+isha for a location on latitude 48 degrees to the local sunset time to  
+obtain time for local isha. Similarly the interval between fajr and sunrise 
+for a location on latitude 48 degrees is subtracted from local sunrise to 
+obtain local fajr time.  
+ 
+2.  Nearest day (Aqrab Al-Ayyam) - use fajr and isha times from the last  
+day when it was possible to calculate these times in the normal way for 
+that location. 
+ 
+3.  Middle of night (Nisf Al-Lail) - split interval between sunrise and  
+sunset into two halves. Isha is offered before the midpoint (e.g. 15 minutes  
+before) and fajr is offered after the midpoint. 
+ 
+4. One seventh of night (Sube Al-Lail) - split interval between sunset and  
+sunrise into seven segments. Isha is offered after the first segment and   
+fajr is offered after the sixth segment. 
+ 
+ 
+The program uses the fourth method (1/7th night rule) to give alternative 
+fajr and isha times for use when the normal times are undefined. These 
+alternative fajr and isha times are provided as a guide only. They should 
+not be regarded as absolute standards. Some users may find  that one of 
+the other three alternatives is more suitable for their location. Whichever 
+method is used to calculate alternative Fajr/ Isha times, it is important 
+that the same method is used for both fasting and prayer! The phenomenon 
+of persisting twilight does not occur for locations within the latitude 
+range 48S to 48N (approximately) when a twilight angle of 18 degrees is used. 
+ 
+ 
+ 
+4.3 Mathematical Equations for Prayer Times 
+=========================================== 
+ 
+To calculate the prayer times for a certain place we need to know the  
+latitude (B) and longitude  (L) of the location and its reference 
+longitude (R). B and L may be obtained from an atlas and R may be calculated 
+by multiplying 15 by the difference between local time and GMT 
+(i.e. 15 x Time Band). 
+ 
+We also need to know two astronomical measures called the declination angle 
+of the sun (D) and the real time-mean time difference, also known as the 
+equation of time (T).  
+ 
+Declination is the angular distance between a celestial object and the  
+celestial equator. The Declination and the Right Ascension are used  
+together to give the position of a star with reference to the celestial  
+equator and the vernal equinox respectively. 
+ 
+The equation of time is a correction to be added to apparent solar time, 
+as read on a sundial, to obtain mean solar time, as commonly used. This  
+difference is a consequence of the ellipticity and tilt of the Earth's  
+orbit, causing the irregular apparent movement of the Sun across the sky. 
+ 
+D and T vary according to the time of year and can be obtained accurately  
+from The Star Almanac or calculated approximately as in this program. 
+  
+The following equations may be used to calculate the prayer times: 
+ 
+ 
+ 
+	(R-L)    T 
+Z = 12+ ----- + ---					........1 
+	 15      60			 
+  	               			  
+ 
+ 
+ 
+    1        {sin(-0.8333-0.0347(H)^0.5)}-sinD.sinB 
+U= -- arccos --------------------------------------  	........2
+   15                   cosD.cosB          
+			                  
+ 
+ 
+ 
+    1        -sinG-sinD.sinB 
+V= -- arccos --------------- 				........3
+   15          cosD.cosB 
+                                        
+ 
+ 
+ 
+    1        sin{arccot(1+tan(B-D)}-sinD.sinB 
+W= -- arccos -------------------------------- 		........4
+   15                 cosD.cosB 
+                                  
+ 
+ 
+ 
+    1        sin{arccot(2+tan(B-D)}-sinD.sinB 
+X= -- arccos -------------------------------- 		........5
+   15                 cosD.cosB 
+ 			 
+				 
+ 
+ 
+where  
+ 
+B= latitude of place 
+L= longitude of place 
+R= reference longitude (i.e. TIME BAND x 15) 
+H= height above sea level in metres 
+D= declination angle of sun from celestial equator (-ve in southern hemisphere)
+T= mean time - real time difference, i.e. equation of time 
+G= twilight angle 
+ 
+Fajr = Z-V 
+Sunrise = Z-U  
+Zuhr  = Z 
+Asr1 (Shafi) = Z+W 
+Asr2 (Hanafi) = Z+X 
+Maghrib/Sunset = Z+U 
+Isha = Z+V 
+ 
+ 
+The program automatically calculates approximate values for T and D from  
+the date (algorithms not shown here). Zuhr time is calculated using equation 1.
+The time for sunrise and sunset/ maghrib may be calculated by subtracting or
+adding 'U'(obtained from equation 2) to the Zuhr time respectively. In 
+calculating sunrise and sunset, the program takes into account the height of
+the location above sea level (if it has been entered into the database). 
+ 
+Fajr and Isha times may be calculated by subtracting or adding 'V'  
+(obtained from equation 3) to the Zuhr time respectively. The term G  
+(twilight angle) in equation 3 is usually set to 18 degrees.  
+For a location with an extreme latitude, days in summer may be so long that 
+twilight persists between sunset and the next sunrise. Under these  
+circumstances, 'V' is undefined and Fajr and Isha have to be determined  
+using agreed principles of fiqh. Version 2.x  of the program is able to  
+display 'fajr/7' and 'isha/7'  i.e. when there is no 'true night' (twilight  
+persists between sunset and next sunrise) the period between sunset and  
+next sunrise is divided into seven segments.  Isha is performed after the 
+first segment and fajr after six segments as described above. 
+ 
+The start of Asr time (Shafi) may be obtained by adding 'W' (obtained from  
+equation 4) to Zuhr; Asr time (Hanafi) is calculated by adding 'X' obtained
+from equation 5) to Zuhr. 
+
+ 
+ 
+ 
+4.4 Qibla Direction 
+=================== 
+ 
+The Qibla direction may be calculated by using spherical trigonometry. 
+ 
+ 
+ 
+		 	sin(Lm-L) 
+Q = arctan	------------------------------- 
+        	cos(Bm).tan B - sin B.cos(Lm-L) 
+ 
+ 
+ 
+where 
+
+Q= Qibla bearing from geographic North 
+Lm= longitude of Makkah 
+L= longitude of place 
+Bm= latitude of Makkah 
+B= latitude of place 
+ 
+Although the program allows the latitude and longitude of a location to be 
+entered to the nearest minute, for the purposes of calculating Qibla direction,
+the reference co-ordinates of Makkah (Kaaba) are stored internally  with 
+greater accuracy i.e. 21:25:16 N and 39:49:29.1 E. 
+
+Note that the Qibla direction is relative to geographic north and not 
+magnetic north (as determined by a compass). Geographic and magnetic norths 
+will vary depending on location. This difference is known as magnetic 
+declination and also changes with time. Information on magnetic 
+declinations for a particular location may be obtained from magnetic atlases 
+(e.g. reference 9).
+
+From a practical point of view, geographic north-south may be determined
+using the time of local solar meridian crossing (zawal). The program 
+automatically calculates and displays zawal. At this time, a vertical rod 
+placed on the ground will cast a shadow along the geographic north-south 
+axis.
+
+
+
+4.5 Shortest Distance to Makkah
+=============================== 
+
+The shortest distance of a place from Makkah in nautical miles is: 
+ 
+	Distance = 60*arcos {sin B.sin(Bm) + cos B.cos Bm.cos(Lm-L)} 
+ 
+Note:  
+	1 International Nautical Mile	= 1.150779 statute miles  
+					= 1.852km exactly 
+					= 2025 yards approximately 
+
+	1 Statute Mile = 1760 yards = 1.609km 
+ 
+ 
+
+
+ 
+----------------------------------------------------------------------------- 
+5. SHAREWARE/CHARITYWARE 
+----------------------------------------------------------------------------- 
+ 
+This program was developed over a period of more than 5 years. You may copy 
+and distribute the program FREELY as long as no alterations are made to the 
+program or documentation and no charge is made (other than a reasonable charge 
+for the media and copying). Please ensure that ALL the files, including 
+documentation, are copied. 
+
+The copyright for the program and documentation remains with the author.
+ 
+If you find the program useful, then you are requested to make a donation 
+to a charity such as Islamic Relief or Muslim Aid (UK addresses given below): 
+ 
+Islamic Relief					Muslim Aid 
+19 Rea Street South				PO Box 3 
+Birmingham B5 6LB				London N7 8LR
+U.K.						U.K.
+
+Tel 0121 622 6477				Tel 0171 609 4425 
+
+ 
+ 
+-----------------------------------------------------------------------------
+6. FUTURE DEVELOPMENTS
+-----------------------------------------------------------------------------
+
+Prayer Times Calculator is under constant development. Some possible
+enhancements for future releases include:
+
+*Improved Summer Time/ Daylight Saving Time routines. If the present DST 
+options are not suitable for your location then switch this feature off and 
+manually adjust the times.
+
+*Mouse support and perhaps a WIMP environment.
+
+*If there is sufficient demand, I may produce a Windows version.
+
+*I am also presently working on another program called 'MOON CALCULATOR'. 
+This program provides information relating to the position, phase, age,
+bright limb angle and visibility of the moon for any given date, time and 
+location on earth. It also gives the time and direction of moonrise and 
+moonset, date/time of astronomical new moon and full moon and predicts 
+the location, date/time and direction of the earliest crescent sighting for 
+a given lunar month (using a variety of sighting criteria). Graphic displays 
+showing the position of the moon on a star chart, the position of the moon 
+in a simulated sky and a close-up of the moon are also provided. World maps
+showing zones where crescent sightings (using a variety of sighting criteria) 
+are likely are also provided. The program is at an advanced stage of
+development and is undergoing error testing.
+
+
+
+
+----------------------------------------------------------------------------- 
+7. CONCLUSION 
+-----------------------------------------------------------------------------
+ 
+For further information or if you have any suggestions to improve the  
+program, please contact me at the address below. 
+ 
+I am grateful to the many people who helped in the development of this  
+program. In particular I should like to thank Shakoor Chugthai for his 
+helpful suggestions and extensive error testing. I should also like to thank 
+Abdul Rahman for making the program generally available through Internet. 
+Any errors or omissions that remain are entirely my own. May Allah forgive 
+us all. 
+ 
+Wasalaam. 
+ 
+=============================================================================
+Dr. Monzur Ahmed  BSc(Hons), MBChB, MRCP(UK).                           
+27 Poplar Road, Birmingham, B11 1UH, UK.                                
+               
+email: monz@netcom.demon.co.uk
+                                                          
+20th February 1995                                                      
+============================================================================= 
+
+ 
+-----------------------------------------------------------------------------
+8. REFERENCES 
+-----------------------------------------------------------------------------
+ 
+1. Dr Husein Kamaluddin [in Arabic] in The Islamic Researches Magazine,  
+1397AH, vol 1, No 3, Pub: Presidency of Scientific Researches, Ifta, Call  
+and Guidance (Saudi Arabia). 
+ 
+2. Dr Muhmoud N. Nahas; Determination of Prayer Times, The Muslim, December  
+1985: 12-14. 
+ 
+3. The Star Almanac for Land Surveyors, London, HMSO. 
+ 
+4. Mufti Rasheed Ahmed Ludhyanvi; Ahsunul Fatawa, 1405 AH, HM Saeed Company 
+Publishers, Pakistan. 
+ 
+5. Dr. Mohammad Ilyas; Astronomy of Islamic Times for the Twenty-first Century,
+1989; Mansell, London. 
+ 
+6. Dr. Mohammad Ilyas; A Modern Guide to Astronomical Calculations of Islamic
+Calendar, Times & Qibla;1984,Berita Publishing Sdn Bhd., Kuala Lumpur, 
+Malaysia
+
+7. Moulana Yakub Qasmi and Tariq Muneer, Prayer Times for United Kingdom &  
+Ireland; 1989, Islamic Research Institute of Britain, Dewsbury, UK. 
+
+8. Abdul Lateef Bin Abdul Aziz, Perpetual Prayer Time Table for the Whole
+World; 1986, Published by Abdul Majeed Qureshi, Karachi, Pakistan.
+
+9. Magnetic Variation (Declination) (Epoch 1990); Map No.42 10th Ed; 1992, 
+World Map, USA Defence Mapping Agency

@@ -1,0 +1,130 @@
+.TH HDATE 1L "hdate/hcal Version 2.1"
+.UC 4
+.SH NAME
+hdate, hcal \- Islamic (Hijri) date and calendar
+.SH SYNOPSIS
+\fBhdate\fR [\fIday\fR \fImonth\fR \fIyear\fR]
+.br
+\fBhdate\fR [\fB-h\fR \fIday\fR \fImonth\fR \fIyear\fR]
+.PP
+\fBhcal\fR [\fB-h\fR] [[\fImonth\fR\] \fIyear\fR ]
+.SH DESCRIPTION
+For a given date, \fIhdate\fR prints the corresponding Islamic (Hijri) date.
+If no arguments are given, it uses the current (today's) date.  If the 
+.B \-h
+command option is specified, \fIhdate\fP takes the given date as a Hijri date,
+and translates it back to the common calendar.  (The common calendar is
+the Gregorian calendar for years after 1582 and the Julian calendar for
+years before that.)
+.PP
+\fIhcal\fP prints a calendar with both common and Hijri dates. 
+If no arguments are given, the current month is used.  If a year is 
+specified, the program outputs a calendar for that entire year.  If 
+a month is also specified, a calendar just for that month is 
+printed.   If the
+.B \-h
+option is specified, \fIhcal\fP takes the given month/year as a Hijri 
+month/year, and produces a calendar accordingly.   If no Hijri month/year 
+is given, a calendar for the current Hijri month is printed.  When the
+.B \-h
+option is used, the program will also print the time of the start of
+the new moon whose first visibility marks the beginning of the Hijri month.
+.PP
+The \fImonth\fP is a number between 1 and 12.  For Christian Era (C.E.)
+dates, a \fIyear\fP must be positive (i.e., A.D.).  For Hijri dates,
+a positive \fIyear\fP signifies After Hijrah or Anno Hegirae (A.H.); 
+a negative year signifies Before Hijrah (B.H.). 
+(The year after 1 B.H. was 1 A.H.; there is no year zero.)
+.PP
+The Hijri year consists of 12 (purely) lunar months.  They are: (1) MoHarram;
+(2) Safar; (3) Raby` al-awal; (4) Raby` al-THaany; (5) Jumaada al-awal; 
+(6) Jumaada al-THaany; (7) Rajab; (8) SHa`baan; (9) RamaDHaan; (10) SHawwal;
+(11) Thw al-Qi`dah; and (12) Thw al-Hijjah.   The most important dates in
+the Islamic year are: 1 MoHarram (new year); 1 RamaDHaan (first day of 
+fasting); 1 SHawwal (`iyd al-FiTr); 8-10 Thw al-Hijjah (the Hajj to Makkah); 
+10 Thw al-Hijjah (`iyd al-'aDHHae).
+.SH EXAMPLES
+To find out the current Hijri date, simply enter:
+.RS
+.sp
+hdate
+.sp
+.RE
+To display the Gregorian date corresponding to the 1st of RamaDHaan 
+(the 9th month) of the Hijri year 1413, type:
+.RS
+.sp
+hdate -h 1 9 1413
+.sp
+.RE
+To find out the Hijri date of the battle of HiTiyn, enter:  
+.RS
+.sp
+hdate 4 6 1187
+.sp
+.RE
+To produce a (Gregorian/Hijri) calendar for December 1992, enter:
+.RS
+.sp
+hcal 12 1992
+.sp
+.RE
+To display a (Hijri/Gregorian) calendar for the year 1413 Hijriah,
+enter:
+.RS
+.sp
+hcal -h 1413
+.sp
+.RE
+.PP
+.SH "NOTES and METHOD DESCRIPTION"
+For religious reasons, the beginning of a Hijri month is marked not by 
+the start of a new moon, but by a physical (i.e., an actual human) sighting
+of the crescent moon at a given locale.  From the Fiqhi standpoint, one may 
+begin the fast in RamaDHaan, for example, based on "local" sighting (IKHTILAF
+AL-MATALE') or based on sighting anywhere in the Muslim World (ITTEHAD 
+AL-MATALE').  Although different, both of these positions are valid Fiqhi 
+positions.
+.PP
+Astronomically, some data are definitive and conclusive (i.e. the time of the 
+BIRTH of the crescent).  However, determining the VISIBILITY of the crescent 
+is not as definitive or conclusive; rather it is dependent upon several 
+factors, mostly optical in nature. 
+.PP
+Efforts for obtaining an astronomical criterion for predicting the time of
+first lunar visibility go back the the Babylonian era, with significant 
+improvements and work done later by Muslim and other scientists.  These 
+efforts have resulted in the development in a number of criteria for 
+predicting first possible sighting of a crescent.  However, there remains 
+a measure of uncertainty associated with all criteria developed thus far.  
+Moreover, there has been little work in the area of estimating crescent 
+visibility on global (as opposed to local) scale.  Until this happens, no 
+Hijri calendar software can be 100% reliable, and actual crescent sighting 
+remains essential especially for fixing important dates such as the beginning
+of RamaDHaan and the two `iyds.
+.PP
+The slight differences in printed Islamic calendars, worldwide, can be 
+traced to two factors: (1) the absence of a global criterion for first 
+visibility; and (2) the use of different visibility criterion (or method 
+of calculation).  Weather conditions and differences in the observer's
+location also explain why there are sometimes differences in the 
+observances of Islamic dates, worldwide.
+.PP
+\fIhcal\fP and \fIhdate\fP use one of the simplest astronomical criterion 
+for earlist lunar visibility.  The criterion is a local one and is based
+on the moon's age since the lunar conjunction (the start of the new moon). 
+.PP
+The minimum recorded age of the crescent moon for first visibility is around 
+13 1/2 hours.  \fIhcal\fP and \fIhdate\fP take this into consideration
+to determine the likelihood of the crescent being sighted just after
+the first sun set (assumed to occur at 7:30p.m.) following the new moon.
+And since there is no agreed upon international Lunar date-line, \fIhcal\fP
+and \fIhdate\fP currently use Makkah (+3 GMT) for the locale.
+.PP
+It is the authors' view that \fIhdate\fP/\fIhcal\fP produces dates/calendars 
+that are more reliable than many of the Islamic calendars which are
+printed annually in various Muslim communities.  The programs, moreover,
+provide astronomically based information which can be used to support the 
+actual sighting of a crescent moon. 
+.SH AUTHOR
+Waleed A. Muhanna (wmuhanna@magnus.acs.ohio-state.edu).

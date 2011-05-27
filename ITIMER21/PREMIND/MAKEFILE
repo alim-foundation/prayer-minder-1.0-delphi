@@ -1,0 +1,32 @@
+#
+# Makefile for premind
+#
+# Waleed A. Muhanna
+# Ohio State University
+# wmuhanna@magnus.acs.ohio-state.edu
+# August, 1994
+#
+
+
+# Edit the following line to give the default "praytime" command
+PRAYTIME = "praytime"
+
+DESTDIR=/usr/local
+#CC= gcc
+
+#normally these flags should work
+CFLAGS=	-O -DPRAYTIME=\"${PRAYTIME}\"
+#but on BSD systems you may have to use the following instead
+#CFLAGS= -O -systype sysv -DPRAYTIME=\"${PRAYTIME}\"
+
+
+premind: premind.c 
+	$(CC) $(CFLAGS) -o premind premind.c
+
+install: premind
+	install -c -s premind $(DESTDIR)/bin
+	install -c  killpr $(DESTDIR)/bin
+	install -c -m 444 premind.1 $(DESTDIR)/man/man1
+
+clean:
+	rm -f premind core premind.o

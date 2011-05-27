@@ -1,0 +1,170 @@
+.TH PRAYTIME 1L "Praytime Version 2.1"
+.SH NAME
+praytime \- produce Islamic prayer time schedule
+.SH SYNOPSIS
+\fBpraytime\fR [\fB-h\fP] [\fB-i\fR] [\fB-f\fR \fIfiqh\fR] [\fB-r\fR \fIratio\fR] [\fB-a\fR \fIangle\fR] [\fB-t\fR \fItime\fR] [\fB-m\fR \fItime\fR] [ [\|\fImonth\fR\|] \fIyear\fR ]
+.SH DESCRIPTION
+\fIpraytime\fR generates Islamic prayer time schedules and computes
+the direction of the Qiblah for any location.  If no argument is given,
+the prayer time schedule for the current date at the default location 
+is produced.  (The default location is the location specified by 
+appropriately setting the \fBPTLOC\fP environment 
+variable (see below).  If \fBPTLOC\fP is not set, the location
+configured into the program when it was compiled is used.)
+If a year is specified, the program outputs a 
+schedule for the entire year.  If a month is also specified, a 
+schedule just for that month is printed.   If the
+.B \-h
+option is specified, \fIpraytime\fP takes the given month/year as a Hijri
+month/year (see \fIHdate/Hcal\fP (1L)) and produces a schedule accordingly.
+.PP
+The
+.I year
+can be between 1900 and 2200, or 0 for a "perpetual" schedule.
+(Hijri year can be between 1318 and 1625.)  The
+.I month
+is a number between 1 and 12.  Times in a "perpetual" schedules are
+essentially the average for the four years of a leap cycle.  (The yearly 
+variation in prayer times is seldom more than two minutes, and the times 
+return back to almost the same value every four years.)
+.sp
+.PP
+\fIpraytime\fR allows for \fIFiqhi\fR variations in computing 
+methods.  The following command line options affect the method of 
+computation.
+.TP 9
+\fB-f\fR \fIfiqh\fR
+Fiqh should be S(Hafi'i) or H(anafi).  Sets the shadow ratio for 
+determining 'Asr to 1 or 2, respectively.  Default value is SHafi'i.
+.TP
+\fB-r\fR \fIratio\fR
+Specifies the value of the 'Asr shadow ratio explicitly.  Default value is 1.
+.TP
+\fB-a\fR \fIangle\fR
+Specifies Sun's angle of depression at Fajr in degrees.  Common values are
+18 (for Fajr to be the same as the astronomical twilight) or 15 (a bit later).
+Default value is 18, which many hold to be the correct value and which
+is also the value adopted by most Islamic countries today.  In North America,
+the practice has been to use a depression angle of 15.  However, in general,
+extreme care should be employed in this regard and very reliable observational 
+data should be required to accept any value which is less than 18 degrees.
+The morning twilight marks the beginning of the fasting period in 
+RamaDHaan, and as such, using smaller values for the depression angle
+may even nullify the Fast.
+.TP
+\fB-m\fR \fItime\fR
+Specifies a maximum time interval from Fajr to sunrise in minutes.  A common
+value used is 90 minutes.  This method is sometimes used in high-latitude
+locations where times for the usual values of Sun's depression are
+undefined or are impractical for certain days during the year.
+.TP
+\fB-t\fR \fItime\fR
+Specifies a fixed time interval from Fajr to sunrise in minutes. This
+value is used to compute daily time for Fajr prayers.  A common value used 
+is 90 minutes.  This method is sometimes useful in extremely high-latitude 
+locations where times for the usual values of Sun's depression are either 
+undefined or are impractical.
+.PP
+Note: 'Isha is computed symmetrically with respect to Fajr, with whichever 
+method is chosen and whatever parameter value is specified. It is an error 
+to specify at the same time both \fB-a\fR and \fB-t\fR or both \fB-t\fR and
+\fB-m\fR or both \fB-f\fR and \fB-r\fR.
+.sp
+.PP
+To generate schedules for locations other than the location configured
+into the program, set the PTLOC environment variable appropriately 
+(in your .login file under UNIX or autoexec.bat under DOS) or
+use the following command line option.
+.TP 9
+\fB-i\fR
+reads name and geographical data for the location from the standard
+input, instead of using the default location.  If
+standard input is a (terminal) keyboard, 
+\fIpraytime\fR prompts the user for the values.
+.SH LOCATION DATA
+Data supplied through the environment variable PTLOC or via standard input 
+must contain (in given order):
+.RS
+.PP
+Name of location (up to 40 characters) 
+.PP
+Latitude degrees and minutes, and N or S to specify north or south.
+.PP
+Longitude degrees and minutes, and E or W to specify east or west.
+.PP
+Time Zone in hours (Decimal for fractional hour zones, negative if
+West of Greenwich).
+.PP
+Y or 1 if Daylight Saving Time adjustment needed.  N or 0, otherwise.
+.RE
+.PP
+Data items should be separated by whitespace.  Input may contain data 
+for more than one location; the tables will be concatenated on the output.
+.SH EXAMPLES
+The following example produces a prayer time schedule for August 1994.
+.RS
+.sp
+praytime 8 1994
+.RE
+.PP
+The following command produces a schedule for RamaDhaan 1414.
+.RS
+.sp
+praytime -h 9 1414
+.RE
+.PP
+The following command produces a schedule for the year 1994, using
+the value 15 for the sun's the angle of depression.
+.RS
+.sp
+praytime -a 15 1994
+.RE
+.PP
+The following command sequence produces a schedule for the year 1994
+for Washington, DC.
+.RS
+.sp
+If need be, set the PTLOC environment variable
+.nf
+UNIX: 
+  setenv PTLOC "Washington, DC  38 54 N  77 2 W  -5 Y"
+DOS:
+  SET PTLOC=Washington, DC  38 54 N  77 2 W  -5 Y
+
+UNIX/DOS:
+  praytime 1994
+.fi
+.sp
+.RE
+.PP
+The following command sequence on produces a perpetual prayer
+schedule for Washington, DC, using the sun's depression angle of 15 degrees
+to define Fajr and a shadow ratio of 2 to define 'Asr.  The schedule includes
+adjustment for Daylight Saving Time.
+.RS
+.sp
+.nf
+UNIX:
+  cat > dc.dta
+  Washington, DC  38 54 N  77 2 W  -5 Y
+  ^D
+
+DOS:
+  more > dc.dta
+  Washington, DC  38 54 N  77 2 W  -5 Y
+  ^Z
+
+UNIX/DOS:
+  praytime -i -a15 -r 2 0 < dc.dta
+.RE
+.sp 1
+.SH SEE ALSO
+hdate/hcal (1L), premind(1L)
+.SH AUTHORS
+Original program, called `praytimer', produced time schedules in TeX and
+was derived by Kamal Abdali from his \fIMinaret\fR program for the 
+Macintosh.  Waleed Muhanna (wmuhanna@magnus.acs.ohio-state.edu) modified 
+the program to remove all TeX related code; to improve input checking,
+to allow a default location to be easily configured in; to permit the 
+user to print a schedule for the current date or a specified month and year;
+and to integrate it with hdate/hcal.

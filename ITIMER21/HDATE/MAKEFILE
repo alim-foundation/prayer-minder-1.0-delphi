@@ -1,0 +1,28 @@
+#
+# Makefile for hdate/hcal (Microsoft C)
+#
+# Waleed A. Muhanna
+# Ohio State University
+# wmuhanna@magnus.acs.ohio-state.edu
+# August, 1994
+#
+
+
+#CC= gcc
+#CFLAGS= -O
+
+all: hdate hcal
+
+hdate: hdate.obj hconv.obj
+	$(CC) $(CFLAGS) -o hdate hdate.obj hconv.obj
+
+hcal: hcal.obj hconv.obj
+	$(CC) $(CFLAGS) -o hcal hcal.obj hconv.obj
+
+clean:
+	-del hdate
+	-del hcal
+	-del *.obj
+
+hdate.obj hcal.obj hconv.obj: hconv.h
+

@@ -1,0 +1,66 @@
+
+
+
+     PREMIND(1L)	   (premind Version 2.1)	   PREMIND(1L)
+
+
+
+     NAME
+	  premind, killpr - Islamic prayers time reminder/notification
+	  service
+
+     SYNOPSIS
+	  premind [-d min] [ptcommand]
+	  killpr
+
+     DESCRIPTION
+	  Premind waits	until the next prayers'	time, and then
+	  notifies/reminds you that it's time for prayers.   Reminder
+	  messages are sent to the initiating terminal 5 minutes and 1
+	  minute before	the actual time, at prayers time, and one
+	  minute after.	  The -d option	may be used to set the advance
+	  warning time to min minutes, instead of the default 5
+	  minutes.
+
+	  Premind is designed to work in conjunction with
+	  praytime(1L).	 To determine prayers' times, premind
+	  automatically	(once a	day) executes, reads, and parses the
+	  output of ptcommand, a praytime shell	command	given as an
+	  argument.  If	no argument is given, the default command
+	  (normally configured to be "praytime") is used.
+
+	  The ptcommand	must be	quoted if it contains blanks or	other
+	  special characters, as illustrated by	the following example
+	  commands:
+
+	       premind "praytime -a15 -r2"
+
+	       premind -d 10 "praytime -i <mycity.data"
+
+	  Premind runs in the background as an orphan process.	(An
+	  orphan process is a process whose parent has exited and that
+	  has been inherited by	the init(8) process.)  Premind ignores
+	  interrupts, quits, and terminates.  To get rid of it you
+	  should either	log off	or use the killpr command (see below).
+	  When you log off, premind exits just before it would have
+	  printed the next message or at most two hours	after you log
+	  off, whichever comes first.
+
+	  The service cancellation command, killpr, is a shell script
+	  which	finds premind processes	you have running on the
+	  current terminal/window and quietly terminates them.
+
+     SEE ALSO
+	  praytime(1L),	leave(1)
+
+     AUTHOR
+	  Waleed A. Muhanna (wmuhanna@magnus.acs.ohio-state.edu)
+
+
+
+
+
+     Page 1					     (printed 8/12/94)
+
+
+
